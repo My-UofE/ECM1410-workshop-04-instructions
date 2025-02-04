@@ -4,7 +4,7 @@ Please accept the GitHub classroom Workshop 4 assignment from the ECM1410 ELE pa
 
 You should find you have files `RectangleApp.java` and `Rectangle.java` in your working folder. Open the files and check you can understand the code. 
 
-Compile the files in the terminal using:
+Compile the files in the terminal:
 
 ```
 javac RectangleApp.java
@@ -20,7 +20,7 @@ java RectangleApp
 
 Read through the code, and compare to the output. 
 
-Make sure you understand how the program is working. Ask a member of the etaching team if you have any questions.
+Make sure you understand how the program is working. Ask a member of the teaching team if you have any questions.
 
 We will now work to edit and extend the example program using the techniques and ideas of object orientated programming covered in the lectures.
 
@@ -28,10 +28,10 @@ We will now work to edit and extend the example program using the techniques and
 
 The `this` keyword can be used within a class definition to refer to the current class instance. 
 
-An advantage of this is to disambiguate variable references, e.g. suppose we 
-wanted to be consistent throughout our code and use variable name `width` to store the width values.
+An advantage of this is to distinguish between variables and attributes. 
 
-We might end up with ambiguous code like that below:
+For example suppose we 
+wanted to be consistent throughout our code and use variable name `width` to store the width values. We might end up with ambiguous code like that below:
 
 ```java
 public Rectangle(double width, double height, double originX, double originY) {
@@ -39,9 +39,9 @@ public Rectangle(double width, double height, double originX, double originY) {
     ...
 ```
 
-Here we are trying to use `width` both as an attribute of the rectangle object, and as the first argument of the constructor.
+Here we find our selfs running `width = width;` as we have used the same name for the rectangle width attribute and the width constructor argument.
 
-The `this` keyword allows us to resolve this, by differentiating between the `width` passed as the constructor argument, and the rectangle attribute (accessed using `this.width`):
+The `this` keyword allows us to resolve the issue by letting us refer explicitly to instance attributes using code like `this.width` rather than the width attribute directly. With this change our code becomes:
 
 ```java
 public Rectangle(double width, double height, double originX, double originY) {
@@ -51,14 +51,14 @@ public Rectangle(double width, double height, double originX, double originY) {
 
 **TASK** 
 
-Update the `Rectangle.java` constructor to use argument names as below, and change the constructor body, so that attributes are set via the `this` keyword, to ensure the code functions as expected.
+Update the `Rectangle.java` constructor to use argument names `width`, `height`, `originX` and `originY` as below. Make corresponding changes the constructor body setting attributes using the `this` keyword, to ensure the code functions as expected.
 
 ```java
 public Rectangle(double width, double height, double originX, double originY) {
     ...
 ```
 
-Recompile and run `RectangleApp.java`  to check your program still functions.
+Recompile and run `RectangleApp.java`  to check your program still works.
 
 **TASK** 
 
@@ -66,8 +66,6 @@ Overload the constructor by inserting the following code beneath the constructor
 
 ```java
 // second constructor: 
-// 
-//
 public Rectangle(double width, double height) {
     this(width, height, 0, 0)
 }
@@ -79,13 +77,7 @@ To test out this constructor uncomment the block of code in `RectangleApp.java` 
 
 **TASK** 
 
-Add another constructor that allows the user to create a rectangle without providing any arguments, i.e. so that you can create a Rectangle with command:
-
-```java
-Rectangle myRect3 = new Rectangle(); 
-```
-
-When created with this contructor, you should initialise the width and height to 1, and its origin to x=0 and y=0.
+Add a this constructor that allows the user to create a rectangle without providing any arguments. In this case its width and height should be set to 1, and its origin set to x=0, y=0.
 
 Uncomment the code block that defines `myRect3` in `RectangleApp.java` to check your code.
 
