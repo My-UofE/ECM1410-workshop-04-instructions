@@ -1,5 +1,3 @@
-# ECM1410 Workshop 04 Instructions
-
 
 You should find you have files `RectangleApp.java` and `Rectangle.java` in your working folder. Open the files and check you can understand the code. 
 
@@ -78,7 +76,13 @@ To test out this constructor uncomment the block of code in `RectangleApp.java` 
 
 **TASK** 
 
-Add a this constructor that allows the user to create a rectangle without providing any arguments. In this case its width and height should be set to 1, and its origin set to x=0, y=0.
+Add another constructor that allows the user to create a rectangle without providing any arguments, i.e. so that you can create a Rectangle with command:
+
+```java
+Rectangle myRect3 = new Rectangle(); 
+```
+
+When created with this contructor, you should initialise the width and height to 1, and its origin to x=0 and y=0.
 
 Uncomment the code block that defines `myRect3` in `RectangleApp.java` to check your code.
 
@@ -90,32 +94,34 @@ completed part 1
 
 ### Part 2. Adding more methods
 
-#### Scaling the rectangles
+#### 2.1 Scaling the rectangles
 
 Suppose we want to scale the rectangle. 
 
 e.g. 
 
-We could scale it by x2 in both the x and y directions and double its height and width. 
+We could scale it by `x2` in both the x and y directions so that we  double its height and width. 
 
-We could scale it by x3 in the y-direction only to triple its height.
+We could scale it by `x3` in the y-direction only so that we triple its height.
 
-We could scale it by x0.5 in the x-direction only to half its width.
+We could scale it by `x0.5` in the x-direction only so that we reduce its width by half.
 
-** TASK **
+**TASK**
 
 Create an additional method `scale` that can implement this.
 
 You should overload the method so that it can be called in two ways:
 
- - by providing a single scaling factor (to be applied to both width and height).
- - by providing two scaling factors (`scaleX` and `scaleY` to be applied to the width and height respectively).
+i) by providing two scaling factors (`scaleX` and `scaleY` to be applied to the width and height respectively).
 
+ii) by providing a single scaling factor (to be applied to both width and height).
+ 
+ 
 **Hint.** Look at the `move` method as an example if you are unsure of how to go about this.
 
- Test your methods by adding the following lines and displaying the new dimensions of the rectangles.
+ Test your methods by adding the following lines of code at the bottom of `RectangleApp.java` and adding additional code to display the new dimensions of the rectangles.
 
-```
+```java
  myRect1.scale(0.5); // should change width to 8, height to 4
 
  myRect2.scale(1,3); // should change height to 24
@@ -123,7 +129,7 @@ You should overload the method so that it can be called in two ways:
  myRect3.scale(15,10); // should scale to width 15, height 10
 ```
 
-#### Comparing rectangle positions
+#### 2.2 Comparing rectangle positions
 
 Suppose we have two rectangle objects. We might want to determine if they overlap.
 
@@ -135,7 +141,7 @@ public boolean isOverlappedWith(Rectangle r){]
 }
 ```
 
-For example, when completed we could then check if rectangle `myRect1` overlaps `myRect2` using code:
+For example, when completed we could then check if rectangle `myRect1` overlaps `myRect2` using:
 
 ```java
 boolean overlapping = myRect1.isOverlappedWith(myRect2);
@@ -145,10 +151,10 @@ Within the `isOverlappedWith` method we can use the attributes of `this` and `r`
 
 Edit your code to add this method. When you have finished you can test it on the following rectangles.
 
-```
-myRect4 = new Rectangle(30.0, 5.0, 10, 10); 
-myRect5 = new Rectangle(50.0, 20.0, 0, 0); 
-myRect6 = new Rectangle(20.0, 40.0, 500, 500); 
+```java
+Rectangle myRect4 = new Rectangle(30.0, 5.0, 10, 10); 
+Rectangle myRect5 = new Rectangle(50.0, 20.0, 0, 0); 
+Rectangle myRect6 = new Rectangle(20.0, 40.0, 500, 500); 
 
 // myRect4 overlaps myRect5 so these should show as true
 System.out.println( "myRect4 overlaps myRect5: " myRect4.isOverlappedWith(myRect5) ) ; 
@@ -159,7 +165,22 @@ System.out.println( "myRect4 overlaps myRect6: " myRect4.isOverlappedWith(myRect
 System.out.println( "myRect6 overlaps myRect4: " myRect6.isOverlappedWith(myRect4) ) ;
 ```
 
-#### Finding the aspect ratio
+We could also write a function to check if two rectangles overlap using a static method, which can be called by passing the two arguments you wish to compare, i.e. with method definition:
+
+```java
+public static boolean areOverlapping(Rectangle r1, Rectangle r2)
+```
+
+and is used using code like:
+
+```java
+boolean result = Rectangle.areOverlapping(myRect4, myRect5);
+System.out.println( "myRect4 overlaps myRect5: "+result);
+```
+
+Add this method to your code. Note rather than duplicate the code that calculates whether they overlap, you should call the previous method `isOverlappedWith`. Ask for help if you are unsure how to do this.
+
+#### 2.3 Finding the aspect ratio
 
  - Add a method calcRatio() for calculating the ratio of width to height.
 
@@ -180,32 +201,66 @@ As mentioned in the lecture, a well-encapsulated class always hide their attribu
 To achieve this we need set all the instance attributes to private, and provide public setter and getter methods to modify and view the attributes.
 
 **TASK**
+
 Edit the Rectangle.java file so that the Rectangle class is well-encapsulated.
 
-Hint. This requires changes similar to the following:
+As an example, to update the `width` attribute we would change the line:
 
-```
-// change to private attributes
-private double width; // private attribute
+```java
+// original line:
+public double width;
 ```
 
+so that the attribute is private:
+
+```java
+// becomes
+private double width; 
 ```
+
+Then add public methods to get and set the attribute:
+
+```java
 // for each attribute provide getter method
 public double getWidth(){ 
   return width;
 }
 ```
 
-```
+```java
 // for each attribute provide setter method
 public void setWidth(double width){
   this.width = width;
 }
 ```
 
-When you think you have completed this, try to compile `Rectangle.java` (not `RectangleApp.java`!) and work through any issues.
+When you think you have completed this, try to compile `Rectangle.java` (not `RectangleApp.java`) and work through any issues that are flagged.
 
-You can then try to compile `RectangleApp.java` note that this will fail because now we can only access attributes using the getter/setter methods. Update the code accordingly, until both files compile and run correctly.
+When `Rectangle.java` compiles successfully you can then try to compile `RectangleApp.java`. This will now fail because it needs to ne updated in line with the changes to the rectangle class. In particular we must edit the code so we use the getter/setter methods to access attributes. 
+
+Update the code accordingly, until both files compile and run correctly.
+
+**TASK**
+
+An advantage of this method is that it allows us to perform checks or validation when attributes are updated. For example we might want to prevent the `height` and `width` taking negative values.
+
+Update the `setWidth` and `setHeight` methods so that the `width` and `height` would be unchanged if they are used with a negative value. Test your code by adding the following example to the `RectangleApp.java` file:
+
+```java
+System.out.println("Check class prevents negative widths");
+
+// initialise rectangle for test
+Rectangle myRect7 = new Rectangle(30.0, 5.0, 10, 10); 
+System.out.println( "Width: "+myRect7.getWidth()+", Height: "+myRect7.getHeight() );
+
+// change to positive width should be allowed
+myRect7.setWidth(40);
+System.out.println( "Width: "+myRect7.getWidth()+", Height: "+myRect7.getHeight() );
+
+// change to negative width should be ignored
+myRect7.setWidth(-10);
+System.out.println( "Width: "+myRect7.getWidth()+", Height: "+myRect7.getHeight() );
+```
 
 Once you have completed this task commit and push your work with the message:
 
@@ -215,9 +270,9 @@ completed part 3
 
 ### Part 4. Object reference
 
-Now add code to the bottom of RectangleApp to create three rectangles as follows.
+ Add code to the bottom of RectangleApp to create three rectangles as follows.
 
-```
+```java
 Rectangle r1 = new Rectangle(10.0,5.0);
 Rectangle r2 = new Rectangle(10.0,5.0);
 Rectangle r3 = r2;
@@ -225,17 +280,18 @@ Rectangle r3 = r2;
 
 Then use println() to print the three rectangle's 'value'.
 
-```
+```java
+System.out.println("Object reference tests:");
 System.out.println("r1: " + r1);
 System.out.println("r2: " + r2);
 System.out.println("r3: " + r3);
 ```
 
-When run the program, you will see the output like this: Rectangle@7852e922, which is the class name together with the hashcode of the object in hexadecimal (you may understand it as the memory address for each object). 
+When run the program, you will see the output like this: `Rectangle@7852e922`, which is the class name together with the hashcode of the object in hexadecimal (you may understand it as the memory address for each object). 
 
-You may see the hashcode of `r1` and `r2` are different, because whenever you `new` an object, the compiler will allocate a new block of memory for it.
+You should see the hashcode of `r1` and `r2` are different, because whenever you `new` an object, the compiler will allocate a new block of memory for it.
 
-However you should see that `r2` and `r3` have the same hash code. This is because the variable `r3` was assigned using `r3 = r2` so that it is a reference to the same object in memory. 
+However you should see that `r2` and `r3` have the same hash code. This is because the variable `r3` was assigned using `r3 = r2` so that it `r2` and `r3` reference the same object in memory. 
 
 This means that whenever you change any attribute’s value for one object, the other object’s attribute value also changes. 
 
@@ -243,7 +299,7 @@ In other words, you may treat them as one object, but with two handles (`r2` and
 
 Try adding the following statement:
 
-```
+```java
 r2.zoom(0.5);
 System.out.println("r2 width: " + r2.getWidth());
 System.out.println("r3 width: " + r3.getWidth());
@@ -257,7 +313,7 @@ Once you have completed this task commit and push your work with the message:
 completed part 4
 ```
 
-### Part 5. toString() method
+### Part 5. `toString()` method
 
 Every well-designed Java class should contain a public method called `tostring()` that returns a short description of the instance (in a return type of `String`). 
 
@@ -275,19 +331,19 @@ return "Rectangle[x="+originX+",y="+originY+",w="+width+",h="+height+"]";
 }
 ```
 
-Re-compile and re-run RectangleApp.java, and you should see the outputs of the following statements are different.
+Re-compile and re-run `RectangleApp.java`, and you should see the outputs of the following statements are now updated.
 
-```
+```java
 System.out.println("r1: " + r1);
 System.out.println("r2: " + r2);
 System.out.println("r3: " + r3);
 ```
 
-This is because if a class doesn’t have the `toString()` method, the compiler will output the default `className@hashcode`. If a class has defined the `toString()` method, the compiler will output the form which you customize.
+This is because if a class doesn’t have the `toString()` method, the compiler will output the default `className@hashcode`, but if a class has a `toString()` method defined, the compiler will use that to when a print command is used.
 
-As metioned above, you may call `toString()` method explicitly, just like any other methods, e.g.
+Note you may call `toString()` method explicitly, just like any other methods, e.g.
 
-```
+```java
 System.out.println("r1: " + r1.toString());
 ```
 
@@ -310,43 +366,30 @@ You should code the following attributes, methods and constructors in the `Circl
 
 **Attributes:** (all set to be ’private’)
 
- - radius
- - originX
- - originY
+ - `radius`
+ - `originX`
+ - `originY`
 
 **Constructors**
 
- - a constructor with three arguments (radius and originX, originY)
- - a constructor with one argument (radius) defaults to origin at (0,0)
- - a no-arg constructor, defaults to radius 1 and origin at (0,0)
+ - `Circle()` constructor with three arguments (radius and originX, originY)
+ - `Circle()`  constructor with one argument (radius) defaults to origin at (0,0)
+ - `Circle()` constructor with no arguments, defaults to radius 1 and origin at (0,0)
 
 **Methods**
 
- - getRadius / setRadius
- - getOriginX / setOriginX
- - getOriginY / setOriginY
+ - `getRadius` / `setRadius` (should disallow negative values)
+ - `getOriginX` / `setOriginX`
+ - `getOriginY` / `setOriginY`
 
- - getArea: Compute the area
- - getCircumference: Compute the circumference.
- - move: Move the circle 
- - toString: Describe the basic information of a circle by defining the toString() method.
- - scale: Scale the circle by a factor.
- - isOverlappedWith: Determine if a circle is overlapped with another circle. 
- - isEnclosedBy: Determine if one circle is enclosed within another circle. 
+ - `getArea`: Compute the area
+ - `getCircumference`: Compute the circumference.
+ - `move`: Move the circle 
+ - `toString`: Describe the basic information of a circle by defining the toString() method.
+ - `scale`: Scale the circle by a factor.
+ - `isOverlappedWith`: Determine if a circle is overlapped with another circle. 
+ - `isEnclosedBy`: Determine if one circle is enclosed within another circle. 
  
-For the last two methods there are two options. We have already seen how to define an instance method:
-
-```
-public boolean isOverlappedWith(Circle c)
-```
-
-However there is another option to define a static method, which is not part of an instance, and called with two arguments (the circles to compare):
-
-```
-public static boolean areOverlapping(Circle c1, Circle c2)
-```
-
-Add the above static method to your class.
 
 Ensure that your `Circle.java` and `CircleApp.java` files compile, and that you test out the class methods fully in your `CircleApp.java` file.
 
