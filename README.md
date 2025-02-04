@@ -363,7 +363,7 @@ You have worked to define a Rectangles class in an object-orientated way.  Let's
 You should create two files:
 
  - `Circle.java` containing the Circle class definition
- - `CircleApp.java` containing the `main()` method. Use this file to creat some example objects and test out your methods.
+ - `CircleApp.java` containing the `main()` method. Use this file to create some example objects and test out your methods.
  
 You should code the following attributes, methods and constructors in the `Circle` class.
 
