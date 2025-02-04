@@ -39,7 +39,7 @@ public Rectangle(double width, double height, double originX, double originY) {
     ...
 ```
 
-Here we find our selfs running `width = width;` as we have used the same name for the rectangle width attribute and the width constructor argument.
+Here we end up with the confusing line: `width = width;` as we have used the same name for the rectangle width attribute and the width constructor argument.
 
 The `this` keyword allows us to resolve the issue by letting us refer explicitly to instance attributes using code like `this.width` rather than the width attribute directly. With this change our code becomes:
 
