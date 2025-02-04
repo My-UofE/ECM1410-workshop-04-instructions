@@ -1,7 +1,10 @@
+## ECM1410 Workshop 04 Instructions
+
+Please accept the GitHub classroom Workshop 4 assignment from the ECM1410 ELE page, and open the repository in GitHub CodeSpaces.
 
 You should find you have files `RectangleApp.java` and `Rectangle.java` in your working folder. Open the files and check you can understand the code. 
 
-Compile the files in the terminal:
+Compile the files in the terminal using:
 
 ```
 javac RectangleApp.java
