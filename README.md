@@ -169,6 +169,10 @@ System.out.println( "myRect4 overlaps myRect6: " myRect4.isOverlappedWith(myRect
 System.out.println( "myRect6 overlaps myRect4: " myRect6.isOverlappedWith(myRect4) ) ;
 ```
 
+**HINT**
+
+<img src="./overlapping_rectangles.png"></img>
+
 We could also write a function to check if two rectangles overlap using a static method, which can be called by passing the two arguments you wish to compare, i.e. with method definition:
 
 ```java
