@@ -81,7 +81,7 @@ Add another constructor that allows the user to create a rectangle without provi
 
 ```java
 // second constructor: 
-public Rectangle(double width, double height) {
+public Rectangle() {
     ...
 }
 ```
