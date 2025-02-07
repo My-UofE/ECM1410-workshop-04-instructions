@@ -308,7 +308,7 @@ In other words, you may treat them as one object, but with two handles (`r2` and
 Try adding the following statement:
 
 ```java
-r2.zoom(0.5);
+r2.scale(0.5);
 System.out.println("r2 width: " + r2.getWidth());
 System.out.println("r3 width: " + r3.getWidth());
 ```
