@@ -77,7 +77,16 @@ To test out this constructor uncomment the block of code in `RectangleApp.java` 
 
 **TASK** 
 
-Add a this constructor that allows the user to create a rectangle without providing any arguments. In this case its width and height should be set to 1, and its origin set to x=0, y=0.
+Add another constructor that allows the user to create a rectangle without providing any arguments, i.e. of form:
+
+```java
+// second constructor: 
+public Rectangle(double width, double height) {
+    ...
+}
+```
+
+In this case its width and height should be set to 1, and its origin set to x=0, y=0.
 
 Uncomment the code block that defines `myRect3` in `RectangleApp.java` to check your code.
 
